@@ -99,7 +99,7 @@ $month2 = date("n", $timestamp);
 $year = date('Y', $timestamp);
 $numberofdays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 echo '<table>
-<caption>$date</caption>';
+<caption>'.$date.'</caption>';
 for($i=1;$i<=$numberofdays;$i++)
 {
     $dateloop = date($year.'-'.$month.'-'.$i);
