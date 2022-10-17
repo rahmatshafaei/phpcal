@@ -95,6 +95,7 @@ $date=$_GET["date"] ?? date("Y-m-d");
 //($date) ? $date=$_GET["date"] : $date = date("Y-m-d");
 $timestamp = strtotime($date);
 $month = date("m", $timestamp);
+$month2 = date("n", $timestamp);
 $year = date('Y', $timestamp);
 $numberofdays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 echo '<table>
@@ -108,13 +109,13 @@ for($i=1;$i<=$numberofdays;$i++)
     $dayofyear = date('z',$datelooptimestmp)+1;
     $namnsdag = implode(" ",$namn[$dayofyear-1]);
 
-    $file=fopen("birthday.txt", "r");
+    $file=fopen("birthday.txt", "a+");
     if($bdayArr=fgets($file))
             {
             $temp=explode(",", $bdayArr);
             for($x=0;$x < count($temp);$x++)
             {
-                $t="$month-$i";
+                $t="$month2-$i";
                 $temp2=explode(".",$temp[$x]);
                 $temp3= substr($temp2[0], 5);
                 $bDate=$temp3;
