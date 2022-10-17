@@ -70,7 +70,7 @@
                 font-weight: bold;
                 border-radius: 12px;
                 background-color: white;
-                opacity: 80%;
+                opacity: 90%;
                 padding: 20px;
                 border: solid black 2px;
 
@@ -97,7 +97,8 @@ $timestamp = strtotime($date);
 $month = date("m", $timestamp);
 $year = date('Y', $timestamp);
 $numberofdays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-echo '<table>';
+echo '<table>
+<caption><? echo($date); ?></caption>';
 for($i=1;$i<=$numberofdays;$i++)
 {
     $dateloop = date($year.'-'.$month.'-'.$i);
