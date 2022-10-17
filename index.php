@@ -78,9 +78,17 @@
             a {
                 text-decoration: none;
             }
-            caption{
+            caption {
                 color: white;
-                text-align:left;
+                text-align: center;
+                font-size: 2.5rem;
+                text-shadow: 4px 4px 6px black;
+            }
+            form {
+                float: right;
+                color: black;
+                font-size: 2.5rem;
+                text-shadow: 4px 4px 6px white;
             }
         </style>
     </head>
@@ -187,16 +195,13 @@ if(isset($_POST["sub"]))
             <a href="?date= <?php echo $plusMonth ?>">Next Month</a>
         </h4>
         <form method="POST" action="index.php">
-    <br>
-        <label for="birthday">Birthday:</label>
-    <br>
-        <input type="date" name="bDay" id="birthday" required>
-    <br>
-    <br>
-        <label for="namn">Name:</label>
-    <br>
-        <input type="text" name="name" id="namn" required>
-        <input type="submit" name="sub" id="">
-</form>
+            <br>
+            <label for="birthday">Birthday:</label>
+            <input type="date" name="bDay" id="birthday" required="required">
+            <br>
+            <label for="namn">Name:</label>
+            <input type="text" name="name" id="namn" required="required">
+            <input type="submit" name="sub" id="">
+        </form>
     </body>
 </html>
