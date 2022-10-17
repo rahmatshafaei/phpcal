@@ -12,7 +12,7 @@
             }
 
             body {
-                background:url("https://c.tadst.com/gfx/1200x630/four-seasons.jpg?1") no-repeat center center fixed;
+                background: url("https://c.tadst.com/gfx/1200x630/four-seasons.jpg?1") no-repeat center center fixed;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
@@ -52,7 +52,7 @@
                 text-align: center !important;
                 font-weight: bold;
                 opacity: 90%;
-                background-color:white;  
+                background-color: white;
 
             }
             td {
