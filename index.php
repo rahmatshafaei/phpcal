@@ -109,7 +109,7 @@ for($i=1;$i<=$numberofdays;$i++)
     $dayofyear = date('z',$datelooptimestmp)+1;
     $namnsdag = implode(" ",$namn[$dayofyear-1]);
 
-    /*$file=fopen("birthday.txt", "a+");
+    $file=fopen("birthday.txt", "r");
     if($bdayArr=fgets($file))
             {
             $temp=explode(",", $bdayArr);
@@ -131,7 +131,7 @@ for($i=1;$i<=$numberofdays;$i++)
                 }
             }
             }
-*/
+
     if ($day == "Monday")
     {
         echo '<td>'.$day.'</td>';
