@@ -181,8 +181,6 @@ if(isset($_POST["sub"]))
         <label for="namn">Name:</label>
     <br>
         <input type="text" name="name" id="namn">
-    <br>
-    <br>
         <input type="submit" name="sub" id="">
 </form>
     </body>
