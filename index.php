@@ -1,40 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        *{
-            margin:0;
-            padding:0;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>calender</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
 
-        table{
-            border:2px solid black;
-            border-collapse:collapse;
-            width:40%;
-            font-size:1.2em;
-        }
+            body {
+                background:url("https://c.tadst.com/gfx/1200x630/four-seasons.jpg?1") no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                color: black;
+                text-align: center;
+            }
 
-        tr td{
-            border-bottom:2px solid black;
-            width:15%;
-        }
-        .week{
-            font-weight:bold;
-            color:green;
-        }
-    </style>    
-</head>
-<body>
+            table {
+                border: 2px solid black;
+                border-collapse: collapse;
+                width: 40%;
+                font-size: 1.2em;
+            }
 
-<a href="?date=">Previous Month</a>
-<a href="?date=">Next Month</a>
+            tr td {
+                border-bottom: 2px solid black;
+                width: 15%;
+            }
+            .week {
+                font-weight: bold;
+                color: green;
+            }
+            table {
+                overflow: auto;
+                margin: auto;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                font-size: 15px;
+                border: solid black 1px;
+                padding: 10px;
+                width: 50%;
+                height: 50%;
+                text-align: center !important;
+                font-weight: bold;
+                opacity: 90%;
+                background-color:white;  
 
+            }
+            td {
+                margin-top: 5%;
+                border: solid black 2px;
+                text-align: left !important;
+                font-size: 1em;
+                text-align: center !important;
 
-<?php
+            }
+            h4 {
+                color: black;
+                float: left;
+                margin-left: 18%;
+                font-weight: bold;
+                border-radius: 12px;
+                background-color: white;
+                opacity: 80%;
+                padding: 20px;
+                border: solid black 2px;
+
+            }
+            a {
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+
+    <?php
 // $date=$_GET['date'];
 // if($date){
 //     $date=$_GET['date'];
@@ -43,8 +91,8 @@
 //     $date = date("Y-m-d");
 // }
 include('namnsdag.php');
-$date=$_GET['date'];
-($date) ? $date=$_GET['date'] : $date = date("Y-m-d");
+$date=$_GET["date"] ?? date("Y-m-d");
+//($date) ? $date=$_GET["date"] : $date = date("Y-m-d");
 $timestamp = strtotime($date);
 $month = date("m", $timestamp);
 $year = date('Y', $timestamp);
@@ -75,6 +123,18 @@ for($i=1;$i<=$numberofdays;$i++)
     echo '</tr>';
 }
 echo '</table>';
+$str = strtotime($date);
+$minusMonth= date("Y-m-d",strtotime("-1 month",$str));
+$plusMonth= date("Y-m-d",strtotime("+1 month",$str));
 ?>
-</body>
+        <h4>
+            <a href="?date= <?php echo $minusMonth ?>">Previous Month</a>
+        </h4>
+        <h4>
+            <a href="index.php">Reset</a>
+        </h4>
+        <h4>
+            <a href="?date= <?php echo $plusMonth ?>">Next Month</a>
+        </h4>
+    </body>
 </html>
