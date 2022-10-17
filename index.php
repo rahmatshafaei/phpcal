@@ -108,18 +108,41 @@ for($i=1;$i<=$numberofdays;$i++)
     $dayofyear = date('z',$datelooptimestmp)+1;
     $namnsdag = implode(" ",$namn[$dayofyear-1]);
 
+    $file=fopen("birthday.txt", "r");
+    if($bdayArr=fgets($file))
+            {
+            $temp=explode(",", $bdayArr);
+            for($x=0;$x < count($temp);$x++)
+            {
+                $t="$month-$i";
+                $temp2=explode(".",$temp[$x]);
+                $temp3= substr($temp2[0], 5);
+                $bDate=$temp3;
+                if($bDate==$t)
+                {
+                    $bday.="$temp2[1]";
+                    break;
+                }
+
+                else if($bDate != $t)
+                {
+                    $bday= "";
+                }
+            }
+            }
+
     if ($day == "Monday")
     {
         echo '<td>'.$day.'</td>';
-        echo '<td>'.$i.'</td><td>'.$dayofyear.'</td><td>'.$namnsdag.'</td><td class="week">'.$week.'</td>';
+        echo '<td>'.$i.'</td><td>'.$dayofyear.'</td><td>'.$namnsdag.'</td><td class="week">'.$week. $bday.'</td>';
     }
     else if ($day == "Sunday")
     {
-        echo '<td style="color:red;">'.$day.'</td><td>'.$i.'</td><td>'.$dayofyear.'</td><td>'.$namnsdag.'</td>';
+        echo '<td style="color:red;">'.$day.'</td><td>'.$i.'</td><td>'.$dayofyear.'</td><td>'.$namnsdag. $bday.'</td>';
     }
     else
     {
-        echo'<tr><td>'.$day.'</td><td>'.$i.'</td><td>'.$dayofyear.'</td><td>'.$namnsdag.'</td>';
+        echo'<tr><td>'.$day.'</td><td>'.$i.'</td><td>'.$dayofyear.'</td><td>'.$namnsdag. $bday.'</td>';
     }
     echo '</tr>';
 }
@@ -127,6 +150,16 @@ echo '</table>';
 $str = strtotime($date);
 $minusMonth= date("Y-m-d",strtotime("-1 month",$str));
 $plusMonth= date("Y-m-d",strtotime("+1 month",$str));
+
+if(isset($_POST["sub"]))
+    {
+
+    $file=fopen("birthday.txt", "a+");
+    $writeB=",". $_POST["bDay"].".".$_POST["name"];
+    fwrite($file, $writeB);
+
+    }
+    fclose($file);
 ?>
         <h4>
             <a href="?date= <?php echo $minusMonth ?>">Previous Month</a>
@@ -137,5 +170,19 @@ $plusMonth= date("Y-m-d",strtotime("+1 month",$str));
         <h4>
             <a href="?date= <?php echo $plusMonth ?>">Next Month</a>
         </h4>
+        <form method="POST" action="index.php">
+    <br>
+        <label for="birthday">Birthday:</label>
+    <br>
+        <input type="date" name="bDay" id="birthday">
+    <br>
+    <br>
+        <label for="namn">Name:</label>
+    <br>
+        <input type="text" name="name" id="namn">
+    <br>
+    <br>
+        <input type="submit" name="sub" id="">
+</form>
     </body>
 </html>
