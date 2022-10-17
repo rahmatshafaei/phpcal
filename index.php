@@ -78,6 +78,10 @@
             a {
                 text-decoration: none;
             }
+            caption{
+                color: white;
+                text-align:left;
+            }
         </style>
     </head>
     <body>
@@ -109,13 +113,24 @@ for($i=1;$i<=$numberofdays;$i++)
     $dayofyear = date('z',$datelooptimestmp)+1;
     $namnsdag = implode(" ",$namn[$dayofyear-1]);
 
+
+    if($i <10)
+    {
+        $Noll = "0$i";
+    }
+    else if($i >= 10)
+    {
+        $Noll = $i;
+    }
+
+
     $file=fopen("birthday.txt", "r");
     if($bdayArr=fgets($file))
             {
             $temp=explode(",", $bdayArr);
             for($x=0;$x < count($temp);$x++)
             {
-                $t="$month2-$i";
+                $t="$month2-$Noll";
                 $temp2=explode(".",$temp[$x]);
                 $temp3= substr($temp2[0], 5);
                 $bDate=$temp3;
@@ -139,11 +154,11 @@ for($i=1;$i<=$numberofdays;$i++)
     }
     else if ($day == "Sunday")
     {
-        echo '<td style="color:red;">'.$day.'</td><td>'.$i.'</td><td>'.$dayofyear.'</td><td>'.$namnsdag. $bday.'</td>';
+        echo '<td style="color:red;">'.$day.'</td><td>'.$i.'</td><td>'.$dayofyear.'</td><td>'.$namnsdag.'</td>'.'<td>'. $bday.'</td>';
     }
     else
     {
-        echo'<tr><td>'.$day.'</td><td>'.$i.'</td><td>'.$dayofyear.'</td><td>'.$namnsdag. $bday.'</td>';
+        echo'<tr><td>'.$day.'</td><td>'.$i.'</td><td>'.$dayofyear.'</td><td>'.$namnsdag.'</td>'.'<td>'. $bday.'</td>';
     }
     echo '</tr>';
 }
@@ -175,12 +190,12 @@ if(isset($_POST["sub"]))
     <br>
         <label for="birthday">Birthday:</label>
     <br>
-        <input type="date" name="bDay" id="birthday">
+        <input type="date" name="bDay" id="birthday" required>
     <br>
     <br>
         <label for="namn">Name:</label>
     <br>
-        <input type="text" name="name" id="namn">
+        <input type="text" name="name" id="namn" required>
         <input type="submit" name="sub" id="">
 </form>
     </body>
